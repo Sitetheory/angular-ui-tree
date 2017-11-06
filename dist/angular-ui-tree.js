@@ -45,8 +45,8 @@
   'use strict';
 
   angular.module('ui.tree')
-    .controller('TreeNodeController', ['$scope', '$element',
-      function ($scope, $element) {
+    .controller('TreeNodeController', ['$scope', '$element', '$log',
+      function ($scope, $element, $log) {
         this.scope = $scope;
 
         $scope.$element = $element;
@@ -69,8 +69,16 @@
           //Find the scope of it's parent node.
           $scope.$parentNodeScope = treeNodesCtrl.scope.$nodeScope;
 
+          //Test Watcher
+          treeNodesCtrl.scope.$watch('$modelValue', function (data, prev) {
+            if (angular.isArray(data)) {
+              $log.log('change:', data[$scope.$index]);
+              $scope.$modelValue = data[$scope.$index];
+            }
+          });
+
           //modelValue for current node.
-          $scope.$modelValue = treeNodesCtrl.scope.$modelValue[$scope.$index];
+          //$scope.$modelValue = treeNodesCtrl.scope.$modelValue[$scope.$index];
           $scope.$parentNodesScope = treeNodesCtrl.scope;
 
           //Init sub nodes.
