@@ -93,6 +93,8 @@
 
         //Return the index of child node in parent node (nodesScope).
         $scope.index = function () {
+          // Note: $scope.$parentNodesScope.$modelValue should be the array
+          $log.log('index:', arguments, $scope.$parentNodesScope.$modelValue);
           return $scope.$parentNodesScope.$modelValue.indexOf($scope.$modelValue);
         };
 
