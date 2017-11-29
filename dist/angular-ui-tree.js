@@ -74,6 +74,7 @@
             if (angular.isArray(data)) {
               $log.log('change:', data[$scope.$index]);
               $scope.$modelValue = data[$scope.$index];
+              $scope.$collectionValue = data;
             }
           });
 
@@ -94,8 +95,8 @@
         //Return the index of child node in parent node (nodesScope).
         $scope.index = function () {
           // Note: $scope.$parentNodesScope.$modelValue should be the array
-          $log.log('index:', arguments, $scope.$parentNodesScope.$modelValue);
-          return $scope.$parentNodesScope.$modelValue.indexOf($scope.$modelValue);
+          $log.log('index:', arguments, $scope.$collectionValue);
+          return $scope.$collectionValue.indexOf($scope.$modelValue);
         };
 
         $scope.dragEnabled = function () {
