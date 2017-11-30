@@ -1486,8 +1486,8 @@
    * @description
    * angular-ui-tree.
    */
-    .factory('UiTreeHelper', ['$document', '$window', 'treeConfig',
-      function ($document, $window, treeConfig) {
+    .factory('UiTreeHelper', ['$document', '$window', 'treeConfig', '$log',
+      function ($document, $window, treeConfig, $log) {
         return {
 
           /**
@@ -1556,6 +1556,7 @@
            * {angular.$scope} node Scope of the node that is being moved.
            */
           dragInfo: function (node) {
+            $log.log('node:', node, node.siblings());
             return {
               source: node,
               sourceInfo: {
